@@ -12,36 +12,36 @@
   </a>
 </div>
 
-**Read this in: [简体中文](./README_zh.md)**
+**阅读语言：[English](./README.md)**
 
 ---
 
-This is a personal Homebrew Tap for distributing various tools and applications developed by laleoarrow.
+这是 laleoarrow 的个人 Homebrew Tap 仓库，用于分发我开发的各类实用工具和应用程序。
 
-## How to use
+## 使用方法
 
-First, add this tap to your Homebrew installation:
+首先，将此 tap 添加到您的 Homebrew：
 
 ```bash
 brew tap laleoarrow/tap
 ```
 
-Then you can install any available software:
+然后即可安装其中可用的软件：
 
 ```bash
 brew install <formula_or_cask>
 ```
 
-## Available Software
+## 可用软件
 
-| Name | Type | Description | Install Command |
+| 软件名 | 类型 | 描述 | 安装命令 |
 | :--- | :--- | :--- | :--- |
-| **iData** | Cask | Professional tool for opening and handling large tables/datasets. | `brew install idata` |
-| *(TBD)* | - | New tools will be added here in the future. | `brew install ...` |
+| **iData** | Cask | 专业打开并处理大型表格和数据集的工具。 | `brew install idata` |
+| *(待添加)* | - | 未来开发的新工具将出现在这里。 | `brew install ...` |
 
-## Update
+## 更新
 
-To update installed software:
+更新已安装的软件：
 
 ```bash
 brew update
