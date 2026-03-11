@@ -1,18 +1,30 @@
-# Laleoarrow Tap
+# laleoarrow Homebrew Tap
 
-## How do I install these formulae?
+## Install iData
 
-`brew install laleoarrow/tap/<formula>`
+```bash
+brew install --cask laleoarrow/tap/idata
+```
 
-Or `brew tap laleoarrow/tap` and then `brew install <formula>`.
+Or tap first, then install:
 
-Or, in a `brew bundle` `Brewfile`:
+```bash
+brew tap laleoarrow/tap
+brew install --cask idata
+```
 
-```ruby
-tap "laleoarrow/tap"
-brew "<formula>"
+## Upgrade
+
+```bash
+brew upgrade --cask idata
+```
+
+## Uninstall
+
+```bash
+brew uninstall --cask idata
 ```
 
 ## Documentation
 
-`brew help`, `man brew` or check [Homebrew's documentation](https://docs.brew.sh).
+See [Homebrew documentation](https://docs.brew.sh).
