@@ -23,7 +23,7 @@ brew install <formula_or_cask>
 
 | 软件名 | 类型 | 描述 | 安装命令 |
 | :--- | :--- | :--- | :--- |
-| **iData** | Cask | Native shell for VisiData workflows | `brew install idata` |
+| **iData** | Cask | 专业打开大型表格的工具 (Professional tool for large tables) | `brew install idata` |
 | *(待添加)* | - | 未来开发的新软件将出现在这里 | `brew install ...` |
 
 ## 更新软件 (Update)
