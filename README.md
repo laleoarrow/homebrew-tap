@@ -1,7 +1,16 @@
 # laleoarrow Homebrew Tap
 
-[![Homebrew Formulae Status](https://github.com/laleoarrow/homebrew-tap/actions/workflows/tests.yml/badge.svg)](https://github.com/laleoarrow/homebrew-tap/actions/workflows/tests.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+<div align="left">
+  <a href="https://github.com/laleoarrow/homebrew-tap/actions/workflows/tests.yml">
+    <img src="https://img.shields.io/github/actions/workflow/status/laleoarrow/homebrew-tap/tests.yml?style=for-the-badge&logo=github&label=STATUS&logoColor=white" alt="Status" />
+  </a>
+  <a href="https://opensource.org/licenses/MIT">
+    <img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge&logo=opensourceinitiative&logoColor=white" alt="License" />
+  </a>
+  <a href="https://github.com/laleoarrow">
+    <img src="https://img.shields.io/badge/Author-laleoarrow-100000?style=for-the-badge&logo=github&logoColor=white" alt="Author" />
+  </a>
+</div>
 
 [English](#english) | [中文](#中文)
 
