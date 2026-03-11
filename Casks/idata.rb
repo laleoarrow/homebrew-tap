@@ -4,7 +4,7 @@ cask "idata" do
 
   url "https://github.com/laleoarrow/iData/releases/download/v#{version}/iData-v#{version}-macos-universal.zip"
   name "iData"
-  desc "Native macOS shell for VisiData workflows"
+  desc "Native shell for VisiData workflows"
   homepage "https://github.com/laleoarrow/iData"
 
   auto_updates true
