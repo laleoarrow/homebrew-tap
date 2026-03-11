@@ -16,15 +16,15 @@ brew tap laleoarrow/tap
 然后就可以安装其中可用的软件了：
 
 ```bash
-brew install <formula>
+brew install <formula_or_cask>
 ```
 
-## 可用软件 (Available Formulae)
+## 可用软件 (Available Software)
 
-| 软件名 | 描述 | 安装命令 |
-| :--- | :--- | :--- |
-| **iData** | 医学数据处理与分析工具 | `brew install idata` |
-| *(待添加)* | 未来开发的新软件将出现在这里 | `brew install ...` |
+| 软件名 | 类型 | 描述 | 安装命令 |
+| :--- | :--- | :--- | :--- |
+| **iData** | Cask | Native shell for VisiData workflows | `brew install idata` |
+| *(待添加)* | - | 未来开发的新软件将出现在这里 | `brew install ...` |
 
 ## 更新软件 (Update)
 
