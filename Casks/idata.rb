@@ -8,7 +8,7 @@ cask "idata" do
   homepage "https://github.com/laleoarrow/iData"
 
   auto_updates true
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   app "iData.app"
 
