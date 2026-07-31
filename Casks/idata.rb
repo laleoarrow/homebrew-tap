@@ -1,6 +1,6 @@
 cask "idata" do
-  version "0.2.14"
-  sha256 "5e462daf6dc2a68fe66e6d4d3925e70d9893f7f1ebc7470f311d61c61f260bf4"
+  version "0.2.15"
+  sha256 "47c1e025c921e31e3a94b60aa483bf86e3faf5b30bad6f1760ca9c113b030098"
 
   url "https://github.com/laleoarrow/iData/releases/download/v#{version}/iData-v#{version}-macos-universal.zip"
   name "iData"
