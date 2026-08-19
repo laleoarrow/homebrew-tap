@@ -1,6 +1,6 @@
 cask "wattson" do
-  version "3.0.16"
-  sha256 "4f003efcde130abc4936dd1720c404d07347a590a16cb732924aa1464cff399e"
+  version "3.0.17"
+  sha256 "4e618c7853a6cff5e8f51886bf5d6106ae0fccbe511aa4ae5c1cdbe0f01b5348"
 
   url "https://github.com/laleoarrow/battery-monitor/releases/download/v#{version}/Wattson-v#{version}-macos-universal.pkg",
       verified: "github.com/laleoarrow/battery-monitor/"
