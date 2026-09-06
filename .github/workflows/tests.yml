@@ -35,9 +35,9 @@ jobs:
 
       - run: brew test-bot --only-setup
 
-      # GMP has no current Intel macOS bottle. Use the matching upstream
-      # ShellCheck binary so style checks do not depend on its source mirrors.
-      - name: Provision Intel ShellCheck
+      # Both formula install paths reach GMP, which has no Intel macOS bottle.
+      # Matching upstream linters keep all style checks without source mirrors.
+      - name: Provision Intel style tools
         if: matrix.os == 'macos-15-intel'
         shell: bash
         run: |
@@ -57,9 +57,21 @@ jobs:
           shellcheck_bin="${shellcheck_dir}/shellcheck-v0.11.0"
           file "${shellcheck_bin}/shellcheck" | grep -F 'Mach-O 64-bit executable x86_64'
           "${shellcheck_bin}/shellcheck" --version | grep -Fx 'version: 0.11.0'
+          archive="${shellcheck_dir}/actionlint.tar.gz"
+          curl --fail --silent --show-error --location \
+            --proto '=https' --proto-redir '=https' --tlsv1.2 \
+            --retry 3 --retry-delay 2 --connect-timeout 15 --max-time 120 \
+            --output "$archive" \
+            https://github.com/rhysd/actionlint/releases/download/v1.7.12/actionlint_1.7.12_darwin_amd64.tar.gz
+          printf '%s  %s\n' \
+            5b44c3bc2255115c9b69e30efc0fecdf498fdb63c5d58e17084fd5f16324c644 \
+            "$archive" | shasum -a 256 -c -
+          tar --no-same-owner -xzf "$archive" -C "$shellcheck_bin" actionlint
+          file "${shellcheck_bin}/actionlint" | grep -F 'Mach-O 64-bit executable x86_64'
+          "${shellcheck_bin}/actionlint" -version | grep -Fx '1.7.12'
           printf '%s\n' "$shellcheck_bin" >> "$GITHUB_PATH"
 
-      - run: brew test-bot --only-tap-syntax
+      - run: brew test-bot --only-tap-syntax --verbose
       - run: brew test-bot --only-formulae
         if: github.event_name == 'pull_request'
 
