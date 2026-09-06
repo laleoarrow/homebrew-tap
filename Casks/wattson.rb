@@ -2,8 +2,7 @@ cask "wattson" do
   version "3.0.24"
   sha256 "ea101f2e96ed60dfe1d7c261e3bf78403e9618f9d7756ad0b724790bfd5dce70"
 
-  url "https://github.com/laleoarrow/battery-monitor/releases/download/v#{version}/Wattson-v#{version}-macos-universal.pkg",
-      verified: "github.com/laleoarrow/battery-monitor/"
+  url "https://github.com/laleoarrow/battery-monitor/releases/download/v#{version}/Wattson-v#{version}-macos-universal.pkg"
   name "Wattson"
   desc "Real-time menu-bar power-flow monitor"
   homepage "https://github.com/laleoarrow/battery-monitor"
