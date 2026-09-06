@@ -35,6 +35,30 @@ jobs:
 
       - run: brew test-bot --only-setup
 
+      # GMP has no current Intel macOS bottle. Use the matching upstream
+      # ShellCheck binary so style checks do not depend on its source mirrors.
+      - name: Provision Intel ShellCheck
+        if: matrix.os == 'macos-15-intel'
+        shell: bash
+        run: |
+          set -euo pipefail
+          shellcheck_dir="$(mktemp -d "${RUNNER_TEMP}/wattson-shellcheck.XXXXXX")"
+          archive="${shellcheck_dir}/shellcheck.tar.gz"
+          curl --fail --silent --show-error --location \
+            --proto '=https' --proto-redir '=https' --tlsv1.2 \
+            --retry 3 --retry-delay 2 --connect-timeout 15 --max-time 120 \
+            --output "$archive" \
+            https://github.com/koalaman/shellcheck/releases/download/v0.11.0/shellcheck-v0.11.0.darwin.x86_64.tar.gz
+          printf '%s  %s\n' \
+            c2c15e08df0e8fbc374c335b230a7ee958c313fa5714817a59aa59f1aa594f51 \
+            "$archive" | shasum -a 256 -c -
+          tar --no-same-owner -xzf "$archive" -C "$shellcheck_dir" \
+            shellcheck-v0.11.0/shellcheck
+          shellcheck_bin="${shellcheck_dir}/shellcheck-v0.11.0"
+          file "${shellcheck_bin}/shellcheck" | grep -F 'Mach-O 64-bit executable x86_64'
+          "${shellcheck_bin}/shellcheck" --version | grep -Fx 'version: 0.11.0'
+          printf '%s\n' "$shellcheck_bin" >> "$GITHUB_PATH"
+
       - run: brew test-bot --only-tap-syntax
       - run: brew test-bot --only-formulae
         if: github.event_name == 'pull_request'
