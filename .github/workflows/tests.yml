@@ -8,6 +8,7 @@ on:
 
 jobs:
   test-bot:
+    timeout-minutes: 20
     strategy:
       matrix:
         os: [ ubuntu-24.04, macos-15-intel, macos-26 ]
@@ -69,7 +70,26 @@ jobs:
           tar --no-same-owner -xzf "$archive" -C "$shellcheck_bin" actionlint
           file "${shellcheck_bin}/actionlint" | grep -F 'Mach-O 64-bit executable x86_64'
           "${shellcheck_bin}/actionlint" -version | grep -Fx '1.7.12'
-          printf '%s\n' "$shellcheck_bin" >> "$GITHUB_PATH"
+          # test-bot rebuilds PATH from its filtered environment, retaining
+          # Homebrew bin/sbin but dropping directories added via GITHUB_PATH.
+          brew_bin="$(brew --prefix)/bin"
+          for tool in shellcheck actionlint; do
+            entry="${brew_bin}/${tool}"
+            if [[ -e "$entry" || -L "$entry" ]]; then
+              mv "$entry" "${shellcheck_dir}/${tool}.previous"
+            fi
+            ln -s "${shellcheck_bin}/${tool}" "$entry"
+          done
+          # Verify lookup using the prefix/system-only PATH test-bot retains.
+          PATH="${brew_bin}:${brew_bin%/bin}/sbin:/usr/bin:/bin:/usr/sbin:/sbin" \
+            brew ruby -- -e '
+              %w[shellcheck actionlint].each do |tool|
+                selected = which(tool, ORIGINAL_PATHS)
+                expected = Pathname.new(ARGV.fetch(0))/tool
+                abort "Wrong #{tool} selected: #{selected}" unless selected&.realpath == expected.realpath
+                puts "Verified #{tool}: #{selected} -> #{selected.realpath}"
+              end
+            ' "$shellcheck_bin"
 
       - run: brew test-bot --only-tap-syntax --verbose
       - run: brew test-bot --only-formulae
